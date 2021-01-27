@@ -1,6 +1,6 @@
 ext {
     compileSdkVersion = 28
-    minSdkVersion = 16
+    minSdkVersion = 21
     targetSdkVersion = compileSdkVersion
 
     kotlin_version = '1.4.21'
@@ -9,6 +9,7 @@ ext {
 //    recyclerViewVersion = '1.0.0'
     constraintLayoutVersion = '2.0.4'
     coreVersion = '1.5.0-beta01'
+    materialVersion = '1.2.1'
     navigationVersion = '2.3.2'
     lifecycleVersion = '2.2.0'
     testRunnerVersion = '1.1.1'
@@ -21,28 +22,29 @@ ext {
     testRunnerVersion = '1.1.1'
 
     libs = [
-//            recyclerView            : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
-            constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
-            core                    : "androidx.core:core-ktx:$coreVersion",
+        //            recyclerView            : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
+        material                : "com.google.android.material:material:$materialVersion",
+        constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+        core                    : "androidx.core:core-ktx:$coreVersion",
 
-            daggerCompiler          : "com.google.dagger:dagger-compiler:$daggerVersion",
-            dagger                  : "com.google.dagger:dagger:$daggerVersion",
+        daggerCompiler          : "com.google.dagger:dagger-compiler:$daggerVersion",
+        dagger                  : "com.google.dagger:dagger:$daggerVersion",
 
-            navigation              : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
-            lifcycleViewModel       : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
-            lifecycleCommon          : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
+        navigation              : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
+        lifecycleViewModel      : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+        lifecycleCommon         : "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion",
 
-            coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+        coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
 
-            retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-            moshi                   : "com.squareup.moshi:moshi:$moshiVersion",
-            moshiRetrofitAdapter    : "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
-            moshiCodegen            : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
-            okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
+        retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+        moshi                   : "com.squareup.moshi:moshi:$moshiVersion",
+        moshiRetrofitAdapter    : "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+        moshiCodegen            : "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion",
+        okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
 
-            testRunner              : "androidx.test:runner:$testRunnerVersion",
-            jUnit                   : "junit:junit:$jUnitVersion",
-            testIntrumentationRunner: "androidx.test.runner.AndroidJUnitRunner"
+        testRunner              : "androidx.test:runner:$testRunnerVersion",
+        jUnit                   : "junit:junit:$jUnitVersion",
+        testIntrumentationRunner: "androidx.test.runner.AndroidJUnitRunner"
     ]
 
 }

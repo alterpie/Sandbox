@@ -43,6 +43,7 @@ dependencies {
     implementation(
         project(path: ':feature-characters'),
 
+        libs.material,
         libs.core,
         libs.constraintLayout,
         libs.navigation,

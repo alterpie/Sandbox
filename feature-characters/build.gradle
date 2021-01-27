@@ -46,6 +46,11 @@ dependencies {
         libs.core,
         libs.constraintLayout,
 
+        libs.lifecycleViewModel,
+        libs.lifecycleCommon,
+
         libs.jUnit
     )
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
 }
