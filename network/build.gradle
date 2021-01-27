@@ -39,7 +39,12 @@ dependencies {
         libs.moshi,
         libs.moshiRetrofitAdapter,
         libs.okhttpLoggingInterceptor,
+        libs.coroutines,
+        libs.dagger,
     )
 
-    kapt(libs.moshiCodegen)
+    kapt(
+        libs.moshiCodegen,
+        libs.daggerCompiler,
+    )
 }
