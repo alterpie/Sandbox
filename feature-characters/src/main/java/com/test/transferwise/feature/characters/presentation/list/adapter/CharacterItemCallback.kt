@@ -13,6 +13,6 @@ internal class CharacterItemCallback : DiffUtil.ItemCallback<Character>() {
             && oldItem.name == newItem.name
             && oldItem.species == newItem.species
             && oldItem.status == newItem.status
-            && oldItem.url == newItem.url
+            && oldItem.image == newItem.image
     }
 }

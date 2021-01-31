@@ -11,6 +11,6 @@ internal class CharactersRepositoryImpl @Inject constructor(
 ) : CharactersRepository {
 
     override suspend fun getCharacters(page: Int): List<Character> {
-        return charactersApi.getCharacters(page).results.map(CharacterMapper::map)
+        return charactersApi.getCharacters(page).results.map(CharacterMapper::invoke)
     }
 }

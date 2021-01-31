@@ -5,6 +5,7 @@ data class Character(
     val name: String,
     val species: String,
     val gender: String,
-    val url: String,
+    val image: String,
     val status: String,
+    val episodes: List<String>,
 )

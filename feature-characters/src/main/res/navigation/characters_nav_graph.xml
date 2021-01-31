@@ -24,6 +24,11 @@
         android:label="CharacterDetailsFragment"
         tools:layout="@layout/characters_fragment_details">
 
+        <argument
+            android:name="character_id"
+            app:argType="long"
+            app:nullable="false" />
+
     </fragment>
 
 </navigation>

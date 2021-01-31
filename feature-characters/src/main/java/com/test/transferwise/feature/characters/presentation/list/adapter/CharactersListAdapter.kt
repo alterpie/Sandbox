@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.loadAny
+import coil.transform.CircleCropTransformation
 import com.test.transferwise.core.characters.model.Character
 import com.test.transferwise.feature.characters.databinding.CharactersItemCharacterBinding
 
@@ -26,7 +27,9 @@ internal class CharactersListAdapter(
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         with(holder.binding) {
             val character = getItem(position)
-            image.loadAny(character.url)
+            image.load(character.image) {
+                transformations(CircleCropTransformation())
+            }
             root.setOnClickListener { onItemClick(character) }
             name.text = character.name
         }

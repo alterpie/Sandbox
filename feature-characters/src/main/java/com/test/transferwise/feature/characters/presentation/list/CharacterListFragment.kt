@@ -43,7 +43,7 @@ class CharacterListFragment : BaseFragment<CharactersFragmentListBinding>() {
         return object : DefaultLifecycleObserver {
             override fun onCreate(owner: LifecycleOwner) {
                 val charactersAdapter = CharactersListAdapter {
-                    findNavController().navigate(CharacterListFragmentDirections.toCharacterDetails())
+                    findNavController().navigate(CharacterListFragmentDirections.toCharacterDetails(it.id))
                 }
                 with(binding.characterList) {
                     layoutManager = LinearLayoutManager(context)

@@ -35,16 +35,13 @@ private object NetworkModule {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
-//            .apply {
-//                if (BuildConfig.DEBUG) {
-//                    addNetworkInterceptor(HttpLoggingInterceptor().apply {
-//                        level = HttpLoggingInterceptor.Level.BODY
-//                    })
-//                }
-//            }
+            .apply {
+                if (BuildConfig.DEBUG) {
+                    addNetworkInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
+                }
+            }
     }
 
     @Provides
@@ -63,7 +60,12 @@ private object NetworkModule {
 
     @Provides
     @Singleton
-    fun charactersApi(retrofitBuilder: Retrofit.Builder): CharactersApi {
-        return retrofitBuilder.build().create(CharactersApi::class.java)
+    fun charactersApi(
+        retrofitBuilder: Retrofit.Builder,
+        okHttpBuilder: OkHttpClient.Builder
+    ): CharactersApi {
+        return retrofitBuilder
+            .client(okHttpBuilder.build())
+            .build().create(CharactersApi::class.java)
     }
 }

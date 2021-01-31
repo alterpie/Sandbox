@@ -20,7 +20,7 @@ ext {
 
     jUnitVersion = '4.12'
     espressoVersion = '3.1.1'
-    testRunnerVersion = '1.1.1'
+    testRunnerVersion = '1.0.0'
 
     libs = [
         recyclerView            : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
