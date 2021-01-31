@@ -1,4 +1,4 @@
-package com.test.transferwise.feature.haracters
+package com.test.transferwise.feature.characters
 
 import org.junit.Test
 

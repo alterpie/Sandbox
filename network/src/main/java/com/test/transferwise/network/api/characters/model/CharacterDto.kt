@@ -11,4 +11,6 @@ data class CharacterDto(
     @Json(name = "gender") val gender: String,
     @Json(name = "url") val url: String,
     @Json(name = "status") val status: String,
+    @Json(name = "type") val type: String,
+    @Json(name = "episode") val episode: List<String>,
 )

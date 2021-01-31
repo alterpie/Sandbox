@@ -1,4 +1,4 @@
-package com.test.transferwise.feature.haracters.details
+package com.test.transferwise.feature.characters.presentation.details
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.test.transferwise.core.ui.BaseFragment
-import com.test.transferwise.feature.haracters.databinding.CharactersFragmentDetailsBinding
+import com.test.transferwise.feature.characters.databinding.CharactersFragmentDetailsBinding
 
 class CharacterDetailsFragment : BaseFragment<CharactersFragmentDetailsBinding>() {
 

@@ -6,7 +6,7 @@ ext {
     kotlin_version = '1.4.21'
     coroutinesVersion = '1.4.2'
     daggerVersion = '2.31.2'
-//    recyclerViewVersion = '1.0.0'
+    recyclerViewVersion = '1.1.0'
     constraintLayoutVersion = '2.0.4'
     coreVersion = '1.5.0-beta01'
     materialVersion = '1.2.1'
@@ -16,17 +16,18 @@ ext {
     moshiVersion = '1.11.0'
     retrofitVersion = '2.9.0'
     okhttpVersion = '3.12.1'
+    coilVersion = "1.1.1"
 
     jUnitVersion = '4.12'
     espressoVersion = '3.1.1'
     testRunnerVersion = '1.1.1'
 
     libs = [
-        //            recyclerView            : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
+        recyclerView            : "androidx.recyclerview:recyclerview:$recyclerViewVersion",
         material                : "com.google.android.material:material:$materialVersion",
         constraintLayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
         core                    : "androidx.core:core-ktx:$coreVersion",
-
+        coil                    : "io.coil-kt:coil:$coilVersion",
         daggerCompiler          : "com.google.dagger:dagger-compiler:$daggerVersion",
         dagger                  : "com.google.dagger:dagger:$daggerVersion",
 

@@ -35,13 +35,16 @@ private object NetworkModule {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
-            .apply {
-                if (BuildConfig.DEBUG) {
-                    addNetworkInterceptor(HttpLoggingInterceptor().apply {
-                        level = HttpLoggingInterceptor.Level.BODY
-                    })
-                }
-            }
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+//            .apply {
+//                if (BuildConfig.DEBUG) {
+//                    addNetworkInterceptor(HttpLoggingInterceptor().apply {
+//                        level = HttpLoggingInterceptor.Level.BODY
+//                    })
+//                }
+//            }
     }
 
     @Provides

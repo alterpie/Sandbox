@@ -1,4 +1,1 @@
-include ':core-characters'
-include ':network'
-include ':core-ui'
-include(':app', ':feature-characters')
+include(':app', ':core-ui', ':feature-characters', ':core-characters', ':network', ':common')

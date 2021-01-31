@@ -35,6 +35,8 @@ android {
 
 dependencies {
     implementation(
+        project(path: ':common'),
+
         libs.retrofit,
         libs.moshi,
         libs.moshiRetrofitAdapter,
