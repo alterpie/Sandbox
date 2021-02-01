@@ -1,10 +1,10 @@
 package com.test.transferwise.core.characters
 
-import com.test.transferwise.core.characters.mapper.CharacterMapper
+import com.test.transferwise.core.characters.mapper.CharacterDtoMapper
 import com.test.transferwise.network.api.characters.model.CharacterDto
 import org.junit.Test
 
-internal class CharacterMapperTest {
+internal class CharacterDtoMapperTest {
 
     @Test
     fun `should map character dto`() {
@@ -18,7 +18,7 @@ internal class CharacterMapperTest {
             "type",
             listOf("episode1, episode2")
         )
-        val mapped = CharacterMapper(characterDto)
+        val mapped = CharacterDtoMapper(characterDto)
 
         assert(characterDto.name == mapped.name)
         assert(characterDto.species == mapped.species)

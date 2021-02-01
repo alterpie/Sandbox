@@ -41,10 +41,14 @@ dependencies {
 
         libs.dagger,
 
+        libs.room,
+        libs.roomKtx,
+
         libs.jUnit,
     )
 
     kapt(
-        libs.daggerCompiler
+        libs.daggerCompiler,
+        libs.roomCompiler,
     )
 }

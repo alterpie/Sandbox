@@ -1,6 +1,7 @@
 package com.test.transferwise.feature.characters.di
 
 import com.test.transferwise.core.characters.di.CharactersCoreComponent
+import com.test.transferwise.feature.characters.presentation.details.CharacterDetailsFragment
 import com.test.transferwise.feature.characters.presentation.list.CharacterListFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -10,7 +11,7 @@ import javax.inject.Singleton
 interface CharactersFeatureComponent {
 
     fun inject(target: CharacterListFragment)
-//    fun inject(target: CharacterDetailsFragment)
+    fun inject(target: CharacterDetailsFragment)
 
     @Component.Factory
     interface Factory {

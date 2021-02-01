@@ -29,7 +29,7 @@ class CharacterListFragment : BaseFragment<CharactersFragmentListBinding>() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        CharactersFeatureInjector.getComponent(Unit).inject(this)
+        CharactersFeatureInjector.getComponent(context).inject(this)
     }
 
     override fun createViewBinding(
