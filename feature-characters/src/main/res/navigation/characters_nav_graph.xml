@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/characterListFragment"
-        android:name="com.test.transferwise.feature.characters.presentation.list.CharacterListFragment"
+        android:name="com.test.sandbox.feature.characters.presentation.list.CharacterListFragment"
         android:label="CharacterListFragment"
         tools:layout="@layout/characters_fragment_list">
 
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/characterDetailsFragment"
-        android:name="com.test.transferwise.feature.characters.presentation.details.CharacterDetailsFragment"
+        android:name="com.test.sandbox.feature.characters.presentation.details.CharacterDetailsFragment"
         android:label="CharacterDetailsFragment"
         tools:layout="@layout/characters_fragment_details">
 
