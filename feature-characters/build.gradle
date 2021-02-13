@@ -44,9 +44,11 @@ dependencies {
         project(path: ':common'),
         project(path: ':core-ui'),
         project(path: ':core-characters'),
+        project(path: ':mvi'),
 
         libs.core,
         libs.constraintLayout,
+        libs.material,
         libs.navigation,
         libs.recyclerView,
 

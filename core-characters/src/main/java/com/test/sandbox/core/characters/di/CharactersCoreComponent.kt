@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import com.test.sandbox.core.characters.CharactersInteractor
 import com.test.sandbox.core.characters.CharactersRepository
+import com.test.sandbox.core.characters.LoadCharactersUseCase
 import com.test.sandbox.core.characters.impl.CharactersInteractorImpl
 import com.test.sandbox.core.characters.impl.CharactersRepositoryImpl
+import com.test.sandbox.core.characters.impl.LoadCharactersUseCaseImpl
 import com.test.sandbox.core.characters.storage.CharactersDao
 import com.test.sandbox.core.characters.storage.CharactersDatabase
 import com.test.sandbox.network.api.characters.CharactersApi
@@ -21,6 +23,7 @@ import dagger.*
 interface CharactersCoreComponent {
 
     val charactersInteractor: CharactersInteractor
+    val loadCharactersUseCase: LoadCharactersUseCase
 
     @Component.Factory
     interface Factory {
@@ -41,6 +44,10 @@ private interface CharactersCoreModule {
     @Binds
     @CharactersCoreScope
     fun charactersInteractior(impl: CharactersInteractorImpl): CharactersInteractor
+
+    @Binds
+    @CharactersCoreScope
+    fun loadCharactersUseCase(impl: LoadCharactersUseCaseImpl): LoadCharactersUseCase
 }
 
 @Module

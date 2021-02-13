@@ -10,11 +10,14 @@ import com.test.sandbox.core.characters.storage.model.CharacterEntity
 internal interface CharactersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(characters: List<CharacterEntity>)
+    suspend fun insert(characters: List<CharacterEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(character: CharacterEntity)
 
     @Query("SELECT * FROM characters")
-    fun getAll(): List<CharacterEntity>
+    suspend fun getAll(): List<CharacterEntity>
 
     @Query("SELECT * FROM characters WHERE characterId=:id")
-    fun getById(id: Long): CharacterEntity
+    suspend fun getById(id: Long): CharacterEntity
 }

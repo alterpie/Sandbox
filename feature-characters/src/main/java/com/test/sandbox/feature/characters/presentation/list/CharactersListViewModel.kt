@@ -2,24 +2,35 @@ package com.test.sandbox.feature.characters.presentation.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.test.sandbox.core.characters.CharactersInteractor
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import com.test.sandbox.feature.characters.presentation.list.mvi.CharactersListAction
+import com.test.sandbox.feature.characters.presentation.list.mvi.CharactersListState
+import com.test.sandbox.feature.characters.presentation.list.mvi.CharactersListStore
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 internal class CharactersListViewModel @Inject constructor(
-    private val charactersInteractor: CharactersInteractor
+    private val store: CharactersListStore
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(CharactersListState(emptyList()))
-    val state: StateFlow<CharactersListState> = _state
+    private val _state = MutableStateFlow(CharactersListState.INITIAL)
+    val state: Flow<CharactersListState> = _state
+
+    private val _events = MutableSharedFlow<Any>(extraBufferCapacity = 42)
+    val events: Flow<Any> = _events
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
-            val characters = charactersInteractor.loadCharacters(1)
-            _state.value = CharactersListState(characters)
-        }
+        store.collectState()
+            .onEach { _state.value = it }
+            .launchIn(viewModelScope)
+
+        store.collectEvents()
+            .onEach(_events::emit)
+            .launchIn(viewModelScope)
+
+        store.acceptAction(CharactersListAction.LoadCharacters)
+    }
+
+    fun acceptAction(action: CharactersListAction) {
+        store.acceptAction(action)
     }
 }

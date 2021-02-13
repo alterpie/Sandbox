@@ -26,8 +26,16 @@ internal class CharactersRepositoryImpl @Inject constructor(
         charactersDao.insert(characters.map(CharacterMapper::invoke))
     }
 
+    override suspend fun persistCharacter(character: Character) {
+        charactersDao.insert(character.let(CharacterMapper::invoke))
+    }
+
     override suspend fun getCharacter(id: Long): Character {
         return charactersDao.getById(id).let(CharacterEntityMapper::invoke)
+    }
+
+    override suspend fun fetchCharacter(id: Long): Character {
+        return charactersApi.getCharacter(id).let(CharacterDtoMapper::invoke)
     }
 
 }
