@@ -6,7 +6,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 abstract class Store<State : Any, Effect : Any, Action : Any>(
-    private val initialState: State,
+    val initialState: State,
     private val useCase: UseCase<Action, Effect>,
     private val reducer: Reducer<State, Effect>,
     private val eventProducer: EventProducer<Effect, *>? = null,
