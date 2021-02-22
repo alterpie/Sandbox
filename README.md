@@ -19,6 +19,7 @@ Currently you can check on existing characters and see detailed description for 
 
 ## TODO:
 
+* Migrate to gradle kotlin scripts using composite builds
 * Add more feature screens(episodes, locations)
 * Create more pleasant UI
     * Support dark mode
