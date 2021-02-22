@@ -1,3 +1,5 @@
+includeBuild("plugins/dependencies")
+
 include(
     ":app",
     ":core-ui",
