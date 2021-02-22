@@ -20,6 +20,8 @@ Currently you can check on existing characters and see detailed description for 
 ## TODO:
 
 * Add more feature screens(episodes, locations)
+* Create more pleasant UI
+    * Support dark mode
 * Compose UI for presentation layer
     * Try configuration changes without Activity recreation
     * Ditch Jetpack ViewModel in favor of remember { } for plain ViewModel without inheritance
