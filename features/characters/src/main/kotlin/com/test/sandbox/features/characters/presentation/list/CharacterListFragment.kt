@@ -21,12 +21,17 @@ import com.test.sandbox.features.characters.presentation.list.adapter.Characters
 import com.test.sandbox.features.characters.presentation.list.mvi.CharactersListAction
 import com.test.sandbox.features.characters.presentation.list.mvi.CharactersListEvent
 import com.test.sandbox.features.characters.presentation.list.mvi.CharactersListState
+import com.test.sandbox.libraries.characters.model.Character
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 import javax.inject.Provider
 
 class CharacterListFragment : BaseFragment<CharactersFragmentListBinding>() {
+
+    companion object {
+        private const val EXTRA_LAYOUT_MANAGER_STATE = "EXTRA_LAYOUT_MANAGER_STATE"
+    }
 
     @Inject
     internal lateinit var vmProvider: Provider<CharactersListViewModel>
@@ -47,13 +52,20 @@ class CharacterListFragment : BaseFragment<CharactersFragmentListBinding>() {
     override fun getViewLifecycle(binding: CharactersFragmentListBinding): LifecycleObserver {
         return object : DefaultLifecycleObserver {
             override fun onCreate(owner: LifecycleOwner) {
-                val charactersAdapter = CharactersListAdapter {
-                    findNavController().navigate(
-                        CharacterListFragmentDirections.toCharacterDetails(it.id)
-                    )
-                }
+                val charactersAdapter = CharactersListAdapter { openDetails(it, binding) }
+
                 with(binding.characterList) {
                     layoutManager = LinearLayoutManager(context)
+                    findNavController()
+                        .currentBackStackEntry
+                        ?.savedStateHandle
+                        ?.let { handle ->
+                            layoutManager!!.onRestoreInstanceState(
+                                handle.get(EXTRA_LAYOUT_MANAGER_STATE)
+                            )
+                            handle.set(EXTRA_LAYOUT_MANAGER_STATE, null)
+                        }
+
                     adapter = charactersAdapter
                     setHasFixedSize(true)
                 }
@@ -77,6 +89,20 @@ class CharacterListFragment : BaseFragment<CharactersFragmentListBinding>() {
                     .show()
             }
         }
+    }
+
+    private fun openDetails(character: Character, binding: CharactersFragmentListBinding) {
+        val navController = findNavController()
+        navController
+            .currentBackStackEntry
+            ?.savedStateHandle
+            ?.set(
+                EXTRA_LAYOUT_MANAGER_STATE,
+                binding.characterList.layoutManager!!.onSaveInstanceState()
+            )
+        navController.navigate(
+            CharacterListFragmentDirections.toCharacterDetails(character.id)
+        )
     }
 
     private fun render(
