@@ -29,6 +29,11 @@ object Deps {
             "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
     }
 
+    object Annotations {
+        private const val injectVersion = "1"
+        const val inject = "javax.inject:javax.inject:$injectVersion"
+    }
+
     object Retrofit {
         private const val version = "2.9.0"
         const val core = "com.squareup.retrofit2:retrofit:$version"

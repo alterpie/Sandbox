@@ -2,6 +2,7 @@ package com.test.sandbox.core.characters.di
 
 import android.content.Context
 import androidx.room.Room
+import com.test.sandbox.common.di.LibraryScope
 import com.test.sandbox.core.characters.CharactersRepository
 import com.test.sandbox.core.characters.LoadCharactersUseCase
 import com.test.sandbox.core.characters.impl.CharactersRepositoryImpl
@@ -11,7 +12,7 @@ import com.test.sandbox.core.characters.storage.CharactersDatabase
 import com.test.sandbox.network.api.characters.CharactersApi
 import dagger.*
 
-@CharactersCoreScope
+@LibraryScope
 @Component(
     modules = [
         CharactersCoreModule::class,
@@ -35,11 +36,11 @@ interface CharactersCoreComponent {
 private interface CharactersCoreModule {
 
     @Binds
-    @CharactersCoreScope
+    @LibraryScope
     fun charactersRepository(impl: CharactersRepositoryImpl): CharactersRepository
 
     @Binds
-    @CharactersCoreScope
+    @LibraryScope
     fun loadCharactersUseCase(impl: LoadCharactersUseCaseImpl): LoadCharactersUseCase
 }
 
@@ -47,14 +48,14 @@ private interface CharactersCoreModule {
 private object CharactersStorageModule {
 
     @Provides
-    @CharactersCoreScope
+    @LibraryScope
     fun charactersDatabase(context: Context): CharactersDatabase {
         return Room.databaseBuilder(context, CharactersDatabase::class.java, "characters_db")
             .build()
     }
 
     @Provides
-    @CharactersCoreScope
+    @LibraryScope
     fun charactersDao(db: CharactersDatabase): CharactersDao {
         return db.charactersDao()
     }

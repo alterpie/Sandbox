@@ -1,4 +1,4 @@
-package com.test.sandbox.common
+package com.test.sandbox.common.di
 
 internal interface IComponentInjector<Component, Dependency> {
 

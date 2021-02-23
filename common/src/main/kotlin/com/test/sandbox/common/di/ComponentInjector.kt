@@ -1,4 +1,4 @@
-package com.test.sandbox.common
+package com.test.sandbox.common.di
 
 /** ComponentInjector is used to achieve scalability for access to specific dagger component.
  * For example if we need to access a dagger component from different modules but want to use

@@ -1,7 +1,7 @@
 package com.test.sandbox.core.characters.di
 
 import android.content.Context
-import com.test.sandbox.common.ComponentInjector
+import com.test.sandbox.common.di.ComponentInjector
 import com.test.sandbox.network.di.NetworkInjector
 
 object CharactersCoreInjector : ComponentInjector<CharactersCoreComponent, Context>() {
