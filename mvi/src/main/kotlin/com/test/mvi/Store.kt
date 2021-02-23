@@ -7,7 +7,7 @@ import kotlinx.coroutines.sync.withLock
 
 abstract class Store<State : Any, Effect : Any, Action : Any>(
     val initialState: State,
-    private val useCase: UseCase<Action, Effect>,
+    private val actor: Actor<Action, Effect>,
     private val reducer: Reducer<State, Effect>,
     private val eventProducer: EventProducer<Effect, *>? = null,
 ) {
@@ -20,7 +20,7 @@ abstract class Store<State : Any, Effect : Any, Action : Any>(
 
     fun collectState(): Flow<State> {
         return actionFlow
-            .flatMapConcat(useCase::invoke)
+            .flatMapConcat(actor::invoke)
             .onEach { effect ->
                 val event = eventProducer?.invoke(effect)
                 event?.let(eventFlow::tryEmit)

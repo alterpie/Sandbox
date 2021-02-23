@@ -1,15 +1,15 @@
 package com.test.sandbox.features.characters.presentation.list.mvi
 
-import com.test.mvi.UseCase
+import com.test.mvi.Actor
 import com.test.sandbox.libraries.characters.LoadCharactersUseCase
 import com.test.sandbox.libraries.characters.model.Character
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
-internal class CharactersListUseCase @Inject constructor(
+internal class CharactersListActor @Inject constructor(
     private val loadCharactersUseCase: LoadCharactersUseCase,
-) : UseCase<CharactersListAction, CharactersListEffect> {
+) : Actor<CharactersListAction, CharactersListEffect> {
 
     private var page = 0
 
