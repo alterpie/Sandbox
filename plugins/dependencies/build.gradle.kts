@@ -3,6 +3,9 @@ plugins {
     `java-gradle-plugin`
 }
 
+group = "com.test.sandbox.dependencies"
+version = "SNAPSHOT"
+
 repositories {
     mavenCentral()
 }

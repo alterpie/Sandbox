@@ -3,8 +3,11 @@ package com.test.sandbox
 object Deps {
     object Android {
         private const val pluginVersion = "7.0.0-alpha07"
+        private const val coreLibraryDesugaringVersion = "1.1.1"
 
         const val plugin = "com.android.tools.build:gradle:$pluginVersion"
+        const val coreLibraryDesugaring =
+            "com.android.tools:desugar_jdk_libs:$coreLibraryDesugaringVersion"
     }
 
     object BuildVersions {
@@ -18,7 +21,7 @@ object Deps {
         private const val coroutinesVersion = "1.4.2"
         private const val serializationVersion = "1.0.1"
 
-        const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
         const val coroutinesAndroid =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
@@ -86,7 +89,7 @@ object Deps {
 
     object OkHttp {
         private const val okhttpVersion = "3.12.1"
-        const val okhttpLoggingInterceptor =
+        const val loggingInterceptor =
             "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     }
 

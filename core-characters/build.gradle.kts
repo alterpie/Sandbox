@@ -1,25 +1,14 @@
 import com.test.sandbox.Deps
 import com.test.sandbox.implementation
 import com.test.sandbox.kapt
+import com.test.sandbox.testImplementation
 
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("kotlin-kapt")
+    id("android-configuration-plugin")
+
 }
 
 android {
-    compileSdkVersion(Deps.BuildVersions.compileSdk)
-
-    defaultConfig {
-        minSdkVersion(Deps.BuildVersions.minSdk)
-        targetSdkVersion(Deps.BuildVersions.targetSdk)
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = Deps.UiTest.testIntrumentationRunner
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false

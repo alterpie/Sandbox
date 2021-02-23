@@ -16,12 +16,14 @@ Currently you can check on existing characters and see detailed description for 
 * [Room](https://developer.android.com/jetpack/androidx/releases/room) for local persistence
 * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) for configuration changes 
 * [Navigation](https://developer.android.com/guide/navigation) for navigation
+* Gradle composite builds for module configuration
 
 ## TODO:
 
-* Migrate to gradle kotlin scripts using composite builds
+* ~~Migrate to gradle kotlin scripts using composite builds~~
 * Add more feature screens(episodes, locations)
-* Create more pleasant UI
+* Pretty UI
+    * Come up with nice looking UI for screens
     * Support dark mode
 * Compose UI for presentation layer
     * Try configuration changes without Activity recreation
