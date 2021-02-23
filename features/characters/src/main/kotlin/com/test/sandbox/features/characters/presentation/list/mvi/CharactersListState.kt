@@ -8,6 +8,6 @@ internal data class CharactersListState(
 ) {
 
     companion object {
-        val INITIAL = CharactersListState(emptyList(), false)
+        val INITIAL = CharactersListState(emptyList(), true)
     }
 }

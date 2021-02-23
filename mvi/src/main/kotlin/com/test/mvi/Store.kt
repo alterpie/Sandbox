@@ -34,8 +34,6 @@ abstract class Store<State : Any, Effect : Any, Action : Any>(
             }
             .distinctUntilChanged()
             .flowOn(Dispatchers.IO)
-            .onStart { emit(initialState) }
-            .flowOn(Dispatchers.Main)
     }
 
     fun acceptAction(action: Action) {
