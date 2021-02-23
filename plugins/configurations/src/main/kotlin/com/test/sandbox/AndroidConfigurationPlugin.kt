@@ -48,7 +48,6 @@ class AndroidConfigurationPlugin : Plugin<Project> {
             extensions.getByType<BaseAppModuleExtension>().apply {
                 configureBaseExtension()
                 defaultConfig {
-                    applicationId = "com.test.sandbox"
                     targetSdkVersion(Deps.BuildVersions.targetSdk)
                     versionCode = 1
                     versionName = "1.0"

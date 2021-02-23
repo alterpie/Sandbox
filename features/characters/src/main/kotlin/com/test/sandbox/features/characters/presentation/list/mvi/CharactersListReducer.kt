@@ -2,7 +2,7 @@ package com.test.sandbox.features.characters.presentation.list.mvi
 
 import com.test.mvi.Reducer
 
-internal object CharactersListReducer : Reducer<CharactersListState, CharactersListEffect> {
+internal object CharactersListReducer : Reducer<CharactersListEffect, CharactersListState> {
 
     override fun invoke(
         previousState: CharactersListState,

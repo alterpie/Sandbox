@@ -1,10 +1,18 @@
-
 import com.test.sandbox.Deps
 import com.test.sandbox.implementation
 import com.test.sandbox.testImplementation
 
 plugins {
     id("android-configuration-plugin")
+}
+
+android {
+    defaultConfig {
+        applicationId = "com.test.sandbox"
+
+        versionCode = 1
+        versionName = "1.0"
+    }
 }
 
 dependencies {
