@@ -2,10 +2,8 @@ package com.test.sandbox.core.characters.di
 
 import android.content.Context
 import androidx.room.Room
-import com.test.sandbox.core.characters.CharactersInteractor
 import com.test.sandbox.core.characters.CharactersRepository
 import com.test.sandbox.core.characters.LoadCharactersUseCase
-import com.test.sandbox.core.characters.impl.CharactersInteractorImpl
 import com.test.sandbox.core.characters.impl.CharactersRepositoryImpl
 import com.test.sandbox.core.characters.impl.LoadCharactersUseCaseImpl
 import com.test.sandbox.core.characters.storage.CharactersDao
@@ -22,7 +20,6 @@ import dagger.*
 )
 interface CharactersCoreComponent {
 
-    val charactersInteractor: CharactersInteractor
     val loadCharactersUseCase: LoadCharactersUseCase
 
     @Component.Factory
@@ -40,10 +37,6 @@ private interface CharactersCoreModule {
     @Binds
     @CharactersCoreScope
     fun charactersRepository(impl: CharactersRepositoryImpl): CharactersRepository
-
-    @Binds
-    @CharactersCoreScope
-    fun charactersInteractior(impl: CharactersInteractorImpl): CharactersInteractor
 
     @Binds
     @CharactersCoreScope
