@@ -12,8 +12,8 @@ includeBuild("plugins/configurations")
 include(
     ":app",
     ":core-ui",
-    ":feature-characters",
-    ":core-characters",
+    ":features:characters",
+    ":libraries:characters",
     ":network",
     ":common",
     ":mvi"

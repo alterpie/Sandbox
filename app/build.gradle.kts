@@ -9,7 +9,7 @@ plugins {
 
 dependencies {
     implementation(
-        project(":feature-characters"),
+        project(":features:characters"),
 
         Deps.UI.material,
         Deps.UI.core,
