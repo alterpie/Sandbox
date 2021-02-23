@@ -10,6 +10,8 @@ abstract class Store<State : Any, Effect : Any, Action : Any>(
     private val actor: Actor<Action, Effect>,
     private val reducer: Reducer<Effect, State>,
     private val eventProducer: EventProducer<Effect>? = null,
+    private val tagPrefix: String = "",
+    private val logger: Logger = Logger { tag, message -> println("$tagPrefix $tag: $message") }
 ) {
 
     private val stateFlow = MutableStateFlow(initialState)
@@ -20,7 +22,9 @@ abstract class Store<State : Any, Effect : Any, Action : Any>(
 
     fun collectState(): Flow<State> {
         return actionFlow
+            .onEach { logger.log("Action", it.toString()) }
             .flatMapConcat(actor::invoke)
+            .onEach { logger.log("Effect", it.toString()) }
             .onEach { effect ->
                 val event = eventProducer?.invoke(effect)
                 event?.let(eventFlow::tryEmit)
@@ -32,6 +36,7 @@ abstract class Store<State : Any, Effect : Any, Action : Any>(
                     newState
                 }
             }
+            .onEach { logger.log("State", it.toString()) }
             .distinctUntilChanged()
             .flowOn(Dispatchers.IO)
     }

@@ -5,10 +5,10 @@ import javax.inject.Inject
 
 internal class CharacterDetailsStore @Inject constructor(
     actor: CharacterDetailsActor,
-):
-    Store<CharacterDetailsState, CharacterDetailsEffect, CharacterDetailsAction>(
-        CharacterDetailsState.INITIAL,
-        actor,
-        CharacterDetailsReducer,
-        CharacterDetailsEventProducer,
-    )
+) : Store<CharacterDetailsState, CharacterDetailsEffect, CharacterDetailsAction>(
+    CharacterDetailsState.INITIAL,
+    actor,
+    CharacterDetailsReducer,
+    CharacterDetailsEventProducer,
+    "CharacterDetails"
+)

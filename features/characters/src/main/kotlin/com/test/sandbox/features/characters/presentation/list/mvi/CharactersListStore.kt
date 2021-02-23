@@ -9,5 +9,6 @@ internal class CharactersListStore @Inject constructor(
     CharactersListState.INITIAL,
     useCase,
     CharactersListReducer,
-    CharactersListEventProducer
+    CharactersListEventProducer,
+    "CharacterList"
 )
