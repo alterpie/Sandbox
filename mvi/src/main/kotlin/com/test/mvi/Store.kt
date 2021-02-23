@@ -9,12 +9,12 @@ abstract class Store<State : Any, Effect : Any, Action : Any>(
     val initialState: State,
     private val actor: Actor<Action, Effect>,
     private val reducer: Reducer<Effect, State>,
-    private val eventProducer: EventProducer<Effect, *>? = null,
+    private val eventProducer: EventProducer<Effect>? = null,
 ) {
 
     private val stateFlow = MutableStateFlow(initialState)
     private val actionFlow = MutableSharedFlow<Action>(extraBufferCapacity = 42)
-    private val eventFlow = MutableSharedFlow<Any>(extraBufferCapacity = 42)
+    private val eventFlow = MutableSharedFlow<Event>(extraBufferCapacity = 42)
 
     private val reducerMutex = Mutex()
 
@@ -40,7 +40,7 @@ abstract class Store<State : Any, Effect : Any, Action : Any>(
         actionFlow.tryEmit(action)
     }
 
-    fun collectEvents(): Flow<Any> {
+    fun collectEvents(): Flow<Event> {
         return eventFlow
     }
 }

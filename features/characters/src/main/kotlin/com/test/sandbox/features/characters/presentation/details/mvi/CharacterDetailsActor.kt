@@ -4,6 +4,7 @@ import com.test.mvi.Actor
 import com.test.sandbox.libraries.characters.LoadCharactersUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -14,6 +15,7 @@ internal class CharacterDetailsActor @Inject constructor(
     override fun invoke(action: CharacterDetailsAction): Flow<CharacterDetailsEffect> {
         return when (action) {
             CharacterDetailsAction.LoadCharacter -> loadCharacterEffect()
+            CharacterDetailsAction.NavigateBack -> flowOf(CharacterDetailsEffect.NavigateBack)
         }
             .catch { emit(CharacterDetailsEffect.Error(it)) }
     }

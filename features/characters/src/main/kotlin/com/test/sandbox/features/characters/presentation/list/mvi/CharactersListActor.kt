@@ -22,6 +22,9 @@ internal class CharactersListActor @Inject constructor(
                     emit(CharactersListEffect.Error(it))
                 }
                 .onStart { emit(CharactersListEffect.Loading) }
+            is CharactersListAction.OpenDetails -> {
+                flowOf(CharactersListEffect.OpenDetails(action.character))
+            }
         }
             .catch { emit(CharactersListEffect.Error(it)) }
             .flowOn(Dispatchers.IO)

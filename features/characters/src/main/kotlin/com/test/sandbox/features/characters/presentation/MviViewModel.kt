@@ -2,6 +2,7 @@ package com.test.sandbox.features.characters.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.test.mvi.Event
 import com.test.mvi.Store
 import kotlinx.coroutines.flow.*
 
@@ -12,8 +13,8 @@ abstract class MviViewModel<State : Any, Action : Any>(
     private val _state = MutableStateFlow(store.initialState)
     val state: Flow<State> = _state
 
-    private val _events = MutableSharedFlow<Any>(extraBufferCapacity = 42)
-    val events: Flow<Any> = _events
+    private val _events = MutableSharedFlow<Event>(extraBufferCapacity = 42)
+    val events: Flow<Event> = _events
 
     init {
         store.collectState()
@@ -29,7 +30,7 @@ abstract class MviViewModel<State : Any, Action : Any>(
         _state.value = state
     }
 
-    private fun sendEvent(event: Any) {
+    private fun sendEvent(event: Event) {
         _events.tryEmit(event)
     }
 

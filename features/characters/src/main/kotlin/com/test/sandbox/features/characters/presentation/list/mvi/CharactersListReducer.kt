@@ -16,6 +16,7 @@ internal object CharactersListReducer : Reducer<CharactersListEffect, Characters
                 previousState.copy(isLoading = true)
             }
             is CharactersListEffect.Error -> previousState.copy(isLoading = false)
+            else -> previousState
         }
     }
 }

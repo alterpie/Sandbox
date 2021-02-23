@@ -10,15 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
-import com.google.android.material.snackbar.Snackbar
 import com.test.sandbox.core.ui.BaseFragment
 import com.test.sandbox.feature.characters.databinding.CharactersFragmentDetailsBinding
-import com.test.sandbox.feature.characters.databinding.CharactersFragmentListBinding
 import com.test.sandbox.features.characters.di.CharactersFeatureInjector
 import com.test.sandbox.features.characters.extensions.viewModels
+import com.test.sandbox.features.characters.presentation.details.mvi.CharacterDetailsAction
 import com.test.sandbox.features.characters.presentation.details.mvi.CharacterDetailsState
-import com.test.sandbox.features.characters.presentation.list.mvi.CharactersListAction
-import com.test.sandbox.features.characters.presentation.list.mvi.CharactersListEvent
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -48,24 +45,12 @@ class CharacterDetailsFragment : BaseFragment<CharactersFragmentDetailsBinding>(
     override fun getViewLifecycle(binding: CharactersFragmentDetailsBinding): LifecycleObserver {
         return object : DefaultLifecycleObserver {
             override fun onCreate(owner: LifecycleOwner) {
-                viewModel.events
-                    .onEach { handleEvent(it, binding) }
-                    .launchIn(owner.lifecycleScope)
+                owner.observe(viewModel.events, ::onEvent)
+                owner.observe(viewModel.state) { render(it, binding) }
 
-                viewModel.state
-                    .onEach { render(it, binding) }
-                    .launchIn(owner.lifecycleScope)
-                binding.backImage.setOnClickListener { findNavController().navigateUp() }
-            }
-        }
-    }
-
-    private fun handleEvent(event: Any, binding: CharactersFragmentDetailsBinding) {
-        when (event) {
-            is CharactersListEvent.Error -> {
-                Snackbar
-                    .make(binding.root, event.throwable.message ?: "", Snackbar.LENGTH_LONG)
-                    .show()
+                binding.backImage.setOnClickListener {
+                    viewModel.acceptAction(CharacterDetailsAction.NavigateBack)
+                }
             }
         }
     }

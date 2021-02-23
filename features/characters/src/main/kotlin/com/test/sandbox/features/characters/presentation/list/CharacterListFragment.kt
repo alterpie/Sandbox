@@ -13,13 +13,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.test.mvi.Event
 import com.test.sandbox.core.ui.BaseFragment
+import com.test.sandbox.core.ui.ErrorEvent
 import com.test.sandbox.feature.characters.databinding.CharactersFragmentListBinding
 import com.test.sandbox.features.characters.di.CharactersFeatureInjector
 import com.test.sandbox.features.characters.extensions.viewModels
 import com.test.sandbox.features.characters.presentation.list.adapter.CharactersListAdapter
 import com.test.sandbox.features.characters.presentation.list.mvi.CharactersListAction
-import com.test.sandbox.features.characters.presentation.list.mvi.CharactersListEvent
 import com.test.sandbox.features.characters.presentation.list.mvi.CharactersListState
 import com.test.sandbox.libraries.characters.model.Character
 import kotlinx.coroutines.flow.launchIn
@@ -69,25 +70,22 @@ class CharacterListFragment : BaseFragment<CharactersFragmentListBinding>() {
                     adapter = charactersAdapter
                     setHasFixedSize(true)
                 }
-                viewModel.state
-                    .onEach { render(it, charactersAdapter, binding) }
-                    .launchIn(owner.lifecycleScope)
 
-                viewModel.events
-                    .onEach { handleEvent(it, binding) }
-                    .launchIn(owner.lifecycleScope)
+                owner.observe(viewModel.events) { onEvent(it, binding) }
+                owner.observe(viewModel.state) { render(it, charactersAdapter, binding) }
             }
         }
     }
 
-    private fun handleEvent(event: Any, binding: CharactersFragmentListBinding) {
+    private fun onEvent(event: Event, binding: CharactersFragmentListBinding) {
         when (event) {
-            is CharactersListEvent.Error -> {
+            is ErrorEvent -> {
                 Snackbar
                     .make(binding.root, event.throwable.message ?: "", Snackbar.LENGTH_INDEFINITE)
                     .setAction("Retry") { viewModel.acceptAction(CharactersListAction.LoadCharacters) }
                     .show()
             }
+            else -> onEvent(event)
         }
     }
 
@@ -100,9 +98,7 @@ class CharacterListFragment : BaseFragment<CharactersFragmentListBinding>() {
                 EXTRA_LAYOUT_MANAGER_STATE,
                 binding.characterList.layoutManager!!.onSaveInstanceState()
             )
-        navController.navigate(
-            CharacterListFragmentDirections.toCharacterDetails(character.id)
-        )
+        viewModel.acceptAction(CharactersListAction.OpenDetails(character))
     }
 
     private fun render(

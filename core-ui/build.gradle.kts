@@ -8,7 +8,9 @@ plugins {
 dependencies {
 
     implementation(
+        project(":mvi"),
         Deps.UI.core,
+        Deps.UI.material,
         Deps.Jetpack.Navigation.fragment,
         Deps.Jetpack.Lifecycle.common
     )
